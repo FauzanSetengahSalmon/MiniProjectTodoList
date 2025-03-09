@@ -5,6 +5,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
+object UserData {
+    var name: String = ""
+    var email: String = ""
+    var password: String = ""
+}
+
 class RegisterViewModel: ViewModel() {
 
     private val _state = MutableStateFlow(RegisterState())
@@ -70,6 +76,10 @@ class RegisterViewModel: ViewModel() {
             }
             return
         }
+
+        UserData.name = state.value.name
+        UserData.email = state.value.email
+        UserData.password = state.value.password
 
         _state.update {
             it.copy(message = "Register Successful", successRegister = true)

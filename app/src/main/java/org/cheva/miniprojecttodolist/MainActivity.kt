@@ -11,11 +11,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.cheva.miniprojecttodolist.dashboard.DashboardScreen
-import org.cheva.miniprojecttodolist.navigation.DashboardScreen
-import org.cheva.miniprojecttodolist.navigation.RegisterScreen
+import org.cheva.miniprojecttodolist.navigation.DashboardScreen as DashboardScreenRoute
+import org.cheva.miniprojecttodolist.navigation.RegisterScreen as RegisterScreenRoute
 import org.cheva.miniprojecttodolist.register.RegisterScreen
 import org.cheva.miniprojecttodolist.register.RegisterViewModel
 import org.cheva.miniprojecttodolist.ui.theme.MiniProjectTodoListTheme
+import org.cheva.miniprojecttodolist.navigation.LoginScreen as LoginScreenRoute
+import org.cheva.miniprojecttodolist.register.LoginScreen
+import org.cheva.miniprojecttodolist.register.LoginViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +29,9 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = RegisterScreen,
+                    startDestination = RegisterScreenRoute.route,
                     builder = {
-                        composable<RegisterScreen> {
+                        composable(RegisterScreenRoute.route) {
                             val viewModel = viewModel<RegisterViewModel>()
                             val state by viewModel.state.collectAsStateWithLifecycle()
                             RegisterScreen(
@@ -37,10 +40,18 @@ class MainActivity : ComponentActivity() {
                                 onNavigate = { navController.navigate(it) }
                             )
                         }
-                        composable<DashboardScreen> {
+                        composable(LoginScreenRoute.route) {
+                            val viewModel = viewModel<LoginViewModel>()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+                            LoginScreen(
+                                state = state,
+                                onEvent = viewModel::onEvent,
+                                onNavigate = { navController.navigate(it) }
+                            )
+                        }
+                        composable(DashboardScreenRoute.route) {
                             DashboardScreen()
                         }
-                        TODO("Definisikan LoginScreen")
                     }
                 )
             }

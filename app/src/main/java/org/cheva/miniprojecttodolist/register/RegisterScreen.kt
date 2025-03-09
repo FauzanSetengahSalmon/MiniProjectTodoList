@@ -1,6 +1,7 @@
 package org.cheva.miniprojecttodolist.register
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import org.cheva.miniprojecttodolist.R
 import org.cheva.miniprojecttodolist.navigation.DashboardScreen
+import org.cheva.miniprojecttodolist.navigation.LoginScreen
 import org.cheva.miniprojecttodolist.ui.components.OutlinedTextField
 import org.cheva.miniprojecttodolist.ui.components.ResultDialog
 import org.cheva.miniprojecttodolist.ui.components.SecureTextField
@@ -34,12 +36,12 @@ import org.cheva.miniprojecttodolist.ui.theme.MiniProjectTodoListTheme
 fun RegisterScreen(
     state: RegisterState,
     onEvent: (RegisterEvent) -> Unit,
-    onNavigate: (Any) -> Unit
+    onNavigate: (String) -> Unit
 ) {
     LaunchedEffect(state.successRegister) {
         if (state.successRegister){
             delay(1000)
-            onNavigate(DashboardScreen)
+            onNavigate(LoginScreen.route)
         }
     }
     Scaffold {
@@ -100,9 +102,10 @@ fun RegisterScreen(
             }
             TextButton(
                 modifier = Modifier.fillMaxWidth(),
-                onClick = { onNavigate(TODO("Navigasi ke LoginScreen")) }
+                onClick = {
+                    onNavigate(LoginScreen.route) }
             ) {
-                Text(stringResource(R.string.to_register))
+                Text(stringResource(R.string.to_login))
             }
         }
     }

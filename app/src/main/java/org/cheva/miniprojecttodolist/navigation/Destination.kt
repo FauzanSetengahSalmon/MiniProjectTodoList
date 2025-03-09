@@ -3,7 +3,16 @@ package org.cheva.miniprojecttodolist.navigation
 import kotlinx.serialization.Serializable
 
 @Serializable
-object RegisterScreen
+object RegisterScreen {
+    const val route = "register"
+}
 
 @Serializable
-object DashboardScreen
+object LoginScreen {
+    const val route = "login"
+}
+
+@Serializable
+object DashboardScreen {
+    const val route = "dashboard"
+}
