@@ -23,6 +23,7 @@ import org.cheva.miniprojecttodolist.R
 fun TodoListScreen(
     state: TodoListState,
     onEvent: (TodoListEvent) -> Unit
+
 ) {
     Scaffold {
         Column(
