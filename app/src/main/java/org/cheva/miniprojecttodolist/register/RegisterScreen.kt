@@ -24,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import org.cheva.miniprojecttodolist.R
-import org.cheva.miniprojecttodolist.navigation.DashboardScreen
 import org.cheva.miniprojecttodolist.navigation.LoginScreen
 import org.cheva.miniprojecttodolist.ui.components.OutlinedTextField
 import org.cheva.miniprojecttodolist.ui.components.ResultDialog

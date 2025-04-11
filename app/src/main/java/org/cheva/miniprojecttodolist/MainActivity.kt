@@ -10,10 +10,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.cheva.miniprojecttodolist.dashboard.DashboardScreen
-import org.cheva.miniprojecttodolist.navigation.DashboardScreen as DashboardScreenRoute
+import org.cheva.miniprojecttodolist.navigation.TodoListScreen
 import org.cheva.miniprojecttodolist.navigation.RegisterScreen as RegisterScreenRoute
 import org.cheva.miniprojecttodolist.register.RegisterScreen
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.cheva.miniprojecttodolist.TodoList.TodoListScreen
+import org.cheva.miniprojecttodolist.Todolist.TodoListViewModel
 import org.cheva.miniprojecttodolist.register.RegisterViewModel
 import org.cheva.miniprojecttodolist.ui.theme.MiniProjectTodoListTheme
 import org.cheva.miniprojecttodolist.navigation.LoginScreen as LoginScreenRoute
@@ -49,8 +51,13 @@ class MainActivity : ComponentActivity() {
                                 onNavigate = { navController.navigate(it) }
                             )
                         }
-                        composable(DashboardScreenRoute.route) {
-                            DashboardScreen()
+                        composable(TodoListScreen.route) {
+                            val viewModel = viewModel<TodoListViewModel>()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+                            TodoListScreen(
+                                state = state,
+                                onEvent = viewModel::onEvent
+                            )
                         }
                     }
                 )

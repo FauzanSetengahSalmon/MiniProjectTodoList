@@ -13,6 +13,6 @@ object LoginScreen {
 }
 
 @Serializable
-object DashboardScreen {
-    const val route = "dashboard"
+object TodoListScreen {
+    const val route = "TodoList"
 }

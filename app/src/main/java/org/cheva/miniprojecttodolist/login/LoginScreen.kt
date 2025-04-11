@@ -25,7 +25,7 @@ import kotlinx.coroutines.delay
 import org.cheva.miniprojecttodolist.R
 import org.cheva.miniprojecttodolist.login.LoginEvent
 import org.cheva.miniprojecttodolist.login.LoginState
-import org.cheva.miniprojecttodolist.navigation.DashboardScreen
+import org.cheva.miniprojecttodolist.navigation.TodoListScreen
 import org.cheva.miniprojecttodolist.ui.components.OutlinedTextField
 import org.cheva.miniprojecttodolist.ui.components.ResultDialog
 import org.cheva.miniprojecttodolist.ui.components.SecureTextField
@@ -41,7 +41,7 @@ fun LoginScreen(
     LaunchedEffect(state.successLogin) {
         if (state.successLogin){
             delay(1000)
-            onNavigate(DashboardScreen.route)
+            onNavigate(TodoListScreen.route)
         }
     }
     Scaffold {
